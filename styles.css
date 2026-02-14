@@ -1,0 +1,101 @@
+ body {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+            color: white;
+            margin: 0;
+        }
+
+        /* slideshow background (crossfade + Ken Burns per slide) */
+        :root {
+            --kenburns-duration: 20s; /* zoom/pan duration (per slide) */
+            --slide-duration: 20s;    /* visible time per slide */
+            --cycle: calc(var(--slide-duration) * 2); /* total cycle for 2 slides */
+        }
+
+        .bg-slideshow {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+            background-color: #000; /* fallback while images load */
+        }
+
+        .bg-slideshow .slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transform-origin: center;
+            will-change: opacity, transform;
+            /* two animations: fade (staggered per slide) and kenburns */
+            animation: slideFade var(--cycle) linear infinite, kenburns var(--kenburns-duration) ease-in-out infinite alternate;
+        }
+
+        .bg-slideshow .slide:nth-child(1) { animation-delay: 0s, 0s; }
+        .bg-slideshow .slide:nth-child(2) { animation-delay: calc(var(--cycle) / 2), 0s; }
+
+        @keyframes slideFade {
+            0%    { opacity: 0; }
+            12.5% { opacity: 1; }
+            37.5% { opacity: 1; }
+            50%   { opacity: 0; }
+            100%  { opacity: 0; }
+        }
+
+        @keyframes kenburns {
+            0%   { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.08) translate(-3%, -2%); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.836);
+            color: #ff4d6d;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 400px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 30px;
+            margin: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+        }
+        #maybeBtn {
+            background-color: #43ff2b;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: gray;
+            color: white;
+            position: relative;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }

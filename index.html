@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Will You Be My Valentine?</title>
+    <link rel="Stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="bg-slideshow" aria-hidden="true">
+    <div class="slide" style="background-image: url('Gemini_Generated_Image_eop53meop53meop5.png');"></div>
+    <div class="slide" style="background-image: url('Gemini_Generated_Image_cbm4l6cbm4l6cbm4.png');"></div>
+</div>
+
+<div class="container">
+    <h1>Will You Be My Valentine? ❤️</h1>
+    <button id="yesBtn" onclick="goToLetter1()">YES 💘</button>
+    <button id="maybeBtn" onclick="goToLetter2()">MAYBE 💘</button>
+    <button id="noBtn" onmouseover="moveButton()">NO 🙈</button>
+</div>
+
+<script>
+    function goToLetter1() {
+        window.location.href = "Letter.pdf"; // Replace this with your PDF link
+    }
+    function goToLetter2() {
+        window.location.href = "index2.html"; // Replace this with your PDF link
+    }
+    function moveButton() {
+        const button = document.getElementById("noBtn");
+        const x = Math.floor(Math.random() * 200) - 100;
+        const y = Math.floor(Math.random() * 200) - 100;
+        button.style.transform = `translate(${x}px, ${y}px)`;
+    }
+</script>
+
+</body>
+</html>
